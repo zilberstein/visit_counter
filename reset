@@ -1,6 +1,5 @@
 #!/usr/bin/python
 import json
-import sys
 
 # Load json containing info about the website
 f = open('data.json', 'r')
@@ -9,15 +8,13 @@ f.close()
 
 data = json.loads(s)
 
-data['visits'] += 1
-IP = sys.argv[1]
-OS = sys.argv[2]
-
-data['OS'][OS] += 1
-
-if IP not in data['IPs']:
-    data['IPs'].append(IP)
-    data['unique_visits'] += 1
+data['visits'] = 0
+data['OS']['MAC'] = 0
+data['OS']['WINDOWS'] = 0
+data['OS']['iOS'] = 0
+data['OS']['OTHER'] = 0
+data['IPs'] = []
+data['unique_visits'] = 0
 
 f = open('data.json', 'w')
 f.write(json.dumps(data))

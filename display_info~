@@ -1,0 +1,11 @@
+#!/usr/bin/python
+import json
+
+
+f = open('info.json', 'r')
+s = f.read()
+f.close()
+
+info = json.loads(s)
+
+print info['visits']

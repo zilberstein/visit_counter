@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>hello world</h1>
+
+<?php
+echo "page view: ";
+$IP =  $_SERVER["REMOTE_ADDR"];
+echo $IP;
+$command = "python /home1/n/noamz/html/cgi-bin/update_data $IP";
+echo '<br>';
+echo $command;
+echo '<br>'
+echo $PHP_OS
+$temp = exec($command, $output);
+
+?>
+
+</body>
+</html>

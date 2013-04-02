@@ -1,0 +1,11 @@
+#!/usr/bin/python
+import json
+
+# Load json containing info about the website
+f = open('data.json', 'r')
+s = f.read()
+f.close()
+
+data = json.loads(s)
+
+exit(data['visits'])

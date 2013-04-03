@@ -9,10 +9,12 @@ f.close()
 data = json.loads(s)
 
 data['visits'] = 0
-data['OS']['MAC'] = 0
-data['OS']['WINDOWS'] = 0
-data['OS']['iOS'] = 0
-data['OS']['OTHER'] = 0
+for os in data['OS']:
+    data['OS'][os] = 0
+for br in data['Browser']:
+    data['Browser'][br] = 0
+for la in data['Language']:
+    data['Language'][la] = 0
 data['IPs'] = []
 data['unique_visits'] = 0
 

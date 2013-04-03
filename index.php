@@ -1,63 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    body {
-    background-color: #333;
-    font-family: sans-serif;
-    }
-
-    #main {
-    margin: 0px auto;
-    padding: 25px;
-    border-radius: 25px;
-    width: 75%;
-    background-color: #eee;
-    box-shadow: 0px 0px 25px #000;
-    }
-
-    h1 {
-    text-shadow: 1px 1px 1px #666;
-    }
-
-    .graph {
-    position: relative;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 5px;
-    box-shadow: 2px 2px #000;
-    color: #fff;
-    }
-  </style>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<title>Noam&apos;s Awesome Website</title>
 </head>
 <body>
 <div id="main">
 <h1>Welcome to My Beautiful Website!</h1>
 
+
+<h2>Here&apos;s some info about my users:</h2>
 <?php
-echo "page view: ";
 $IP =  $_SERVER["REMOTE_ADDR"];
-echo $IP;
+
 $temp = $_SERVER['HTTP_USER_AGENT'];
+echo $temp;
 if (strpos($temp,'iPhone') !== false || strpos($temp, 'iPad') !== false || strpos($temp,'iPod') !== false)
    $OS = "iOS";
 else if (strpos($temp,'Windows') !== false)
-   $OS = "WINDOWS";
+   $OS = "Windows";
 else if (strpos($temp,'Macintosh') !== false)
-   $OS = "MAC";
+   $OS = "Mac";
+else if (strpos($temp,'Android') !== false)
+   $OS = "Android";
+else if (strpos($temp, 'Linux') !== false)
+   $OS = "Linux";
 else
-   $OS = "OTHER";
+   $OS = "Other";
 
-$command = "python /home1/n/noamz/html/cgi-bin/update_data $IP $OS";
-echo '<br>';
-$a = '100px';
-echo "<div class=\"graph\" style=\"background-color:#156086;width: $a;\">Mac</div>";
-echo "<div class=\"graph\" style=\"background-color:#7d1586;width: 150px;\">Windows</div>";
-echo "<div class=\"graph\" style=\"background-color:#861522;width: 75px;\">iOS</div>";
-echo "<div class=\"graph\" style=\"background-color:#f87705;width: 60px;\">Android</div>";
-echo "<div class=\"graph\" style=\"background-color:#37a721;width: 40px;\">Other</div>";
+if (strpos($temp,'Chrome') !== false)
+   $Browser = "Chrome";
+else if (strpos($temp,"Safari") !== false)
+   $Browser = "Safari";
+else if (strpos($temp,"Firefox") !== false)
+   $Browser = "Firefox";
+else if (strpos($temp,"IE") !== false)
+   $Browser = "IE";
+else
+   $Browser = "Other";
 
-$temp = exec($command, $output);
+$temp = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+switch ($temp){
+   case "en":
+   $lang = 'English';
+   break;
+   case "fr":
+   $lang = 'French';
+   break;
+   case "es":
+   $lang = 'Spanish';
+   break;
+   case "zh":
+   $lang = 'Chinese';
+   break;
+   case "de":
+   $lang = 'German';
+   break;
+   default:
+   $lang = 'Other';
+   break;
+}
+
+$command = "python /home1/n/noamz/html/cgi-bin/update_data $IP $OS $Browser $lang";
+exec($command, $output);
+
+echo exec('python /home1/n/noamz/html/cgi-bin/display_data');
 
 ?>
 </div>

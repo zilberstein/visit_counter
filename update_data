@@ -12,11 +12,16 @@ data = json.loads(s)
 data['visits'] += 1
 IP = sys.argv[1]
 OS = sys.argv[2]
+BR = sys.argv[3]
+LANG = sys.argv[4]
 
 data['OS'][OS] += 1
+data['Browser'][BR] += 1
+data['Language'][LANG] += 1
 
-if IP not in data['IPs']:
-    data['IPs'].append(IP)
+if IP not in [d['IP'] for d in data['IPs']]:
+    user_info = {'IP':IP,'NAME':'Noam','OS':OS}
+    data['IPs'].append(user_info)
     data['unique_visits'] += 1
 
 f = open('data.json', 'w')

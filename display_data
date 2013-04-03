@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import json
+colors = ['30d134','33aceb','c233eb','eb3362','eb6233','fbc900']
 
 # Load json containing info about the website
 f = open('data.json', 'r')
@@ -8,4 +9,21 @@ f.close()
 
 data = json.loads(s)
 
-print data['visits']
+print "<div><h3>Page Views:",data['visits'],"</h3></div>",
+print "<div><h3>Unique Visitors:",data['unique_visits'],"</h3></div>",
+
+# display user info
+def graphs(param):
+    print "<div class=\"graph_wrap\"><h3>Users by "+param+":</h3>",
+    c = 0
+    for p in sorted([(a,data[param][a]) for a in data[param]],key=lambda t: t[1], reverse=True):
+        percent = int(round((p[1]*100.0)/data['visits']))
+        if percent == 0:
+            break
+        print "<div class=\"graph\" style=\"width:"+str(percent*3)+"px;background-color:#"+colors[c]+";\"><strong>"+p[0],"</strong>("+str(percent)+"%)</div>",
+        c += 1
+    print "</div>",
+
+graphs('OS')
+graphs('Browser')
+graphs('Language')

@@ -30,6 +30,7 @@ h1 {
     border: 3px solid #ccc;
     box-shadow:inset 0 0 10px #000;
     /*box-shadow:inset 0 0 10px #000;*/
+    min-height: 175px;
 }
 
 h3 {

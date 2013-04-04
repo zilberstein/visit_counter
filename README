@@ -1,0 +1,24 @@
+Noam Zilberstein
+CIS 191 Project 3
+Visitor Counter
+
+
+OVERVIEW
+-----------------------
+My website keeps track of 5 different pieces of information about its users.
+It counts how many times the page has been used, how many unique people have
+visited the site, which operating systems the users are running, which browsers
+they use, and what language their computer is configured in.  The last 3 are
+plotted on graphs broken down by percent.
+
+IMPLEMENTATION
+-----------------------
+The main part of the site is run from index.php.  When a user visits the site,
+index.php calls a python script, update_data.  It gives as input to the python
+script the user's IP address, operating system, web browser, and language.  The
+IP address is used to determine if the user has been to the site before.  If
+the IP address is not reckognized, it increments the number of unique visitors
+and adds the IP address to a list of known IPs.  All the data about users is
+stored in a JSON file.  After update_data has finished updating the JSON file,
+display_data is called.  This is another python script that generates HTML code
+for all the dynamic content of the site (ie the visitor counters, and graphs).

@@ -1,6 +1,9 @@
 #!/usr/bin/python
 import json
 import sys
+import datetime
+
+days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
 # Load json containing info about the website
 f = open('data.json', 'r')
@@ -15,9 +18,11 @@ OS = sys.argv[2]
 BR = sys.argv[3]
 LANG = sys.argv[4]
 
+
 data['OS'][OS] += 1
 data['Browser'][BR] += 1
 data['Language'][LANG] += 1
+data['Day'][days[datetime.datetime.today().weekday()]] += 1
 
 if IP not in [d['IP'] for d in data['IPs']]:
     user_info = {'IP':IP,'NAME':'Noam','OS':OS}

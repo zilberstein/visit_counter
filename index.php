@@ -14,7 +14,7 @@
 $IP =  $_SERVER["REMOTE_ADDR"];
 
 $temp = $_SERVER['HTTP_USER_AGENT'];
-echo $temp;
+
 if (strpos($temp,'iPhone') !== false || strpos($temp, 'iPad') !== false || strpos($temp,'iPod') !== false)
    $OS = "iOS";
 else if (strpos($temp,'Windows') !== false)
@@ -62,7 +62,7 @@ switch ($temp){
 }
 
 $command = "python /home1/n/noamz/html/cgi-bin/update_data $IP $OS $Browser $lang";
-exec($command, $output);
+exec($command);
 
 echo exec('python /home1/n/noamz/html/cgi-bin/display_data');
 

@@ -20,10 +20,11 @@ def graphs(param):
         percent = int(round((p[1]*100.0)/data['visits']))
         if percent == 0:
             break
-        print "<div class=\"graph\" style=\"width:"+str(percent*3)+"px;background-color:#"+colors[c]+";\"><strong>"+p[0],"</strong>("+str(percent)+"%)</div>",
+        print "<div class=\"graph\" style=\"width:"+str(percent*3)+"px;background-color:#"+colors[c%len(colors)]+";\"><strong>"+p[0],"</strong>("+str(percent)+"%)</div>",
         c += 1
     print "</div>",
 
 graphs('OS')
 graphs('Browser')
 graphs('Language')
+graphs('Day')

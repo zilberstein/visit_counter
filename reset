@@ -15,6 +15,8 @@ for br in data['Browser']:
     data['Browser'][br] = 0
 for la in data['Language']:
     data['Language'][la] = 0
+for da in data['Day']:
+    data['Day'][da] = 0
 data['IPs'] = []
 data['unique_visits'] = 0
 
